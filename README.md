@@ -1,4 +1,14 @@
 # First Start the dbserver
+goto dbserver folder
+perform npm install from terminal
+and then execute:
+npm start
+
+# Second Start the expense-tracker
+goto expense-tracker folder
+perform npm install from terminal
+and then execute:
+npm start
 
 
 # Getting Started with Create React App
