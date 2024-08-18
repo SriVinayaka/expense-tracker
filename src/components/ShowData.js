@@ -9,6 +9,9 @@ export function ShowData()
   let data = [];
   let rahulspent1 = 0;
   let rameshspent1 = 0;
+  let result= 0;
+  //let rahulspent = 0;
+  //let rameshspent = 0;
 
   const [items, setItems] = useState([]); // State for expense data
   const [error, setError] = useState(null); // State for errors
@@ -29,6 +32,8 @@ export function ShowData()
     }
   };
 
+  
+  /*
   const Shares = (data) => {
 
     data.forEach((item) => { // Use forEach instead of map for side effects
@@ -44,6 +49,28 @@ export function ShowData()
   );
     setRahulspent(rahulspent1);
     setRameshspent(rameshspent1);
+  };
+
+  */
+
+
+  const Shares = (data) => {
+    const rahulSpent = data.reduce((acc, item) => {
+      if (item.payeeName === 'Rahul') {
+        return acc + item.price;
+      }
+      return acc;
+    }, 0);
+  
+    const rameshSpent = data.reduce((acc, item) => {
+      if (item.payeeName === 'Ramesh') {
+        return acc + item.price;
+      }
+      return acc;
+    }, 0);
+  
+    setRahulspent(rahulSpent);
+    setRameshspent(rameshSpent);
   };
 
   const success = () => {
@@ -76,7 +103,7 @@ export function ShowData()
       {items && (
         items.map((user, idx) => (
           <div key={idx}>
-            <div className="use-inline date">{user.setDate}</div>
+            <div className="use-inline date">{user.date}</div>
             <div className="use-inline">{user.product}</div>
             <div className="use-inline price">{user.price}</div>
             <div className={`use-inline ${user.payeeName}`}>{user.payeeName}</div>
@@ -92,7 +119,7 @@ export function ShowData()
       <div className="use-inline">Ramesh paid: </div>
       <span className="use-inline total Ramesh">{rameshspent}</span> <br />
       <span className="use-inline payable">{rahulspent > rameshspent ? 'Pay Rahul ' : 'Pay Ramesh'}</span>
-      <span className="use-inline payable price"> {Math.abs((rahulspent - rameshspent) / 2)}</span>
+      <span className="use-inline payable price"> {Math.abs((rahulspent - rameshspent))}</span>
 
       {error && (
         <>

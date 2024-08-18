@@ -2,9 +2,15 @@
 
 # dependencies
 /node_modules
+/node_modules/
+/node_modules/**
+
+/dbserver/node_modules
+/dbserver/node_modules/
+/dbserver/node_modules/**
+
 /.pnp
 .pnp.js
-./dbserver/node_modules
 
 # testing
 /coverage

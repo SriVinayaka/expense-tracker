@@ -13,7 +13,7 @@ export function ExpenseTracker(props) {
   const [payeeName, setPayeeName] = useState("");
   const [product, setProduct] = useState("");
   const [price, setPrice] = useState(0);
-  const [date, setDate] = useState("");
+  let [date, setDate] = useState(setDefaultDate);
 
   const handlePayeeChange = (event) => {
     setPayeeName(event.target.value);
@@ -27,9 +27,38 @@ export function ExpenseTracker(props) {
     setPrice(parseInt(event.target.value));
   };
 
+  /*
   const handleDateChange = (event) => {
     setDate(new Date(event.target.value));
   };
+  */
+
+  /*
+
+  const handleDateChange = (event) => {
+    const selectedDate = new Date(event.target.value);
+    const formattedDate = selectedDate.toISOString().split('T')[0];
+    setDate(formattedDate);
+  };
+  */
+
+  /*
+  const handleDateChange = (event) => {
+    const newDate = new Date(event.target.value);
+    setDate(newDate);
+  };
+*/
+
+
+const handleDateChange = (event) => {
+  const selectedDate = new Date(event.target.value);
+  const year = selectedDate.getFullYear();
+  const month = String(selectedDate.getMonth() + 1).padStart(2, '0'); // Add leading zero if necessary
+  const day = String(selectedDate.getDate()).padStart(2, '0');
+
+  const formattedDate = `${year}-${month}-${day}`;
+  date=setDate(formattedDate);
+};
 
   const handleSubmit = async (event) => {
     event.preventDefault();
